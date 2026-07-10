@@ -1,0 +1,15 @@
+{
+    "name": "Realty+",
+    "short_name": "Realty+",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#2563EB",
+    "icons": [
+        {
+            "src": "assets/favicon.svg",
+            "sizes": "64x64",
+            "type": "image/svg+xml"
+        }
+    ]
+}

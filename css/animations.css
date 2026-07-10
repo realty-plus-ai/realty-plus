@@ -1,0 +1,484 @@
+/* ==========================================================
+   REALTY+
+   Animations
+========================================================== */
+
+/* ==========================
+   KEYFRAMES
+========================== */
+
+@keyframes fadeUp{
+
+0%{
+
+opacity:0;
+transform:translateY(50px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes fadeDown{
+
+0%{
+
+opacity:0;
+transform:translateY(-40px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes fadeLeft{
+
+0%{
+
+opacity:0;
+transform:translateX(-40px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateX(0);
+
+}
+
+}
+
+@keyframes fadeRight{
+
+0%{
+
+opacity:0;
+transform:translateX(40px);
+
+}
+
+100%{
+
+opacity:1;
+transform:translateX(0);
+
+}
+
+}
+
+@keyframes zoomIn{
+
+0%{
+
+opacity:0;
+transform:scale(.9);
+
+}
+
+100%{
+
+opacity:1;
+transform:scale(1);
+
+}
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.05);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+@keyframes glow{
+
+0%{
+
+box-shadow:
+0 0 0 rgba(37,99,235,.15);
+
+}
+
+50%{
+
+box-shadow:
+0 0 30px rgba(37,99,235,.35);
+
+}
+
+100%{
+
+box-shadow:
+0 0 0 rgba(37,99,235,.15);
+
+}
+
+}
+
+@keyframes gradientMove{
+
+0%{
+
+background-position:0% 50%;
+
+}
+
+50%{
+
+background-position:100% 50%;
+
+}
+
+100%{
+
+background-position:0% 50%;
+
+}
+
+}
+
+@keyframes rotate{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ==========================
+   INITIAL STATES
+========================== */
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(60px);
+
+transition:
+
+opacity .8s ease,
+transform .8s ease;
+
+}
+
+.reveal.active{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero-left{
+
+animation:
+
+fadeLeft .9s ease forwards;
+
+}
+
+.hero-right{
+
+animation:
+
+fadeRight .9s ease forwards;
+
+}
+
+.chat-card{
+
+animation:
+
+float 6s ease-in-out infinite;
+
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.btn-primary{
+
+animation:
+
+fadeUp .7s ease;
+
+}
+
+.btn-primary:hover{
+
+animation:
+
+pulse .4s ease;
+
+}
+
+.logo-box{
+
+animation:
+
+glow 4s infinite;
+
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.feature-card,
+.trust-card,
+.timeline-card,
+.benefit-card,
+.stat-card,
+.contact-card{
+
+transition:
+
+transform .35s ease,
+box-shadow .35s ease;
+
+}
+
+.feature-card:hover,
+.trust-card:hover,
+.timeline-card:hover,
+.benefit-card:hover,
+.stat-card:hover,
+.contact-card:hover{
+
+transform:
+
+translateY(-10px);
+
+}
+
+/* ==========================
+   SECTION TITLES
+========================== */
+
+.section-title{
+
+animation:
+
+fadeUp .8s ease;
+
+}
+
+/* ==========================
+   BADGES
+========================== */
+
+.badge,
+.badge-blue,
+.badge-green{
+
+animation:
+
+zoomIn .7s ease;
+
+}
+
+/* ==========================
+   CTA
+========================== */
+
+.cta{
+
+background-size:200% 200%;
+
+animation:
+
+gradientMove 12s ease infinite;
+
+}
+
+/* ==========================
+   STATUS DOT
+========================== */
+
+.status-dot{
+
+animation:
+
+pulse 2s infinite;
+
+}
+
+/* ==========================
+   HAMBURGER
+========================== */
+
+.hamburger span{
+
+transition:.35s ease;
+
+}
+
+.hamburger.active span:nth-child(1){
+
+transform:
+
+translateY(8px)
+rotate(45deg);
+
+}
+
+.hamburger.active span:nth-child(2){
+
+opacity:0;
+
+}
+
+.hamburger.active span:nth-child(3){
+
+transform:
+
+translateY(-8px)
+rotate(-45deg);
+
+}
+
+/* ==========================
+   FAQ
+========================== */
+
+.faq-answer{
+
+transition:
+
+max-height .35s ease;
+
+}
+
+.faq-item{
+
+transition:
+
+transform .3s ease,
+box-shadow .3s ease;
+
+}
+
+/* ==========================
+   LINKS
+========================== */
+
+a{
+
+transition:
+
+color .25s ease;
+
+}
+
+/* ==========================
+   IMAGE EFFECTS
+========================== */
+
+img{
+
+transition:
+
+transform .4s ease;
+
+}
+
+img:hover{
+
+transform:scale(1.02);
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar-thumb{
+
+transition:.3s;
+
+}
+
+/* ==========================
+   DISABLE FOR REDUCED MOTION
+========================== */
+
+@media (prefers-reduced-motion: reduce){
+
+*,
+*::before,
+*::after{
+
+animation:none !important;
+
+transition:none !important;
+
+scroll-behavior:auto !important;
+
+}
+
+}
