@@ -3,7 +3,7 @@
    Main JavaScript
 ========================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     /* ==========================================
        MOBILE MENU
@@ -14,16 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (hamburger && navMenu) {
 
-        hamburger.addEventListener("click", () => {
+        hamburger.addEventListener("click", function () {
 
             hamburger.classList.toggle("active");
             navMenu.classList.toggle("active");
 
         });
 
-        document.querySelectorAll(".nav-menu a").forEach(link => {
+        document.querySelectorAll(".nav-menu a").forEach(function(link){
 
-            link.addEventListener("click", () => {
+            link.addEventListener("click", function(){
 
                 hamburger.classList.remove("active");
                 navMenu.classList.remove("active");
@@ -40,17 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const header = document.querySelector(".header");
 
-    function updateHeader() {
+    function updateHeader(){
 
-        if (!header) return;
+        if(!header) return;
 
-        if (window.scrollY > 30) {
+        if(window.scrollY > 20){
 
-            header.style.background = "rgba(255,255,255,.95)";
-            header.style.boxShadow = "0 10px 30px rgba(15,23,42,.08)";
+            header.style.background = "rgba(255,255,255,.96)";
+            header.style.boxShadow = "0 8px 25px rgba(15,23,42,.08)";
             header.style.borderBottom = "1px solid rgba(226,232,240,.9)";
 
-        } else {
+        }
+
+        else{
 
             header.style.background = "rgba(255,255,255,.82)";
             header.style.boxShadow = "none";
@@ -65,27 +67,53 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", updateHeader);
 
     /* ==========================================
+       ACTIVE NAVIGATION
+    ========================================== */
+
+    const currentPage = window.location.pathname.split("/").pop();
+
+    document.querySelectorAll(".nav-menu a").forEach(function(link){
+
+        const href = link.getAttribute("href");
+
+        if(
+
+            href === currentPage ||
+
+            (currentPage === "" && href === "index.html")
+
+        ){
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+    /* ==========================================
        FAQ ACCORDION
     ========================================== */
 
     const faqItems = document.querySelectorAll(".faq-item");
 
-    faqItems.forEach(item => {
+    faqItems.forEach(function(item){
 
         const question = item.querySelector(".faq-question");
         const answer = item.querySelector(".faq-answer");
 
-        question.addEventListener("click", () => {
+        if(!question || !answer) return;
 
-            const isOpen = item.classList.contains("active");
+        question.addEventListener("click", function(){
 
-            faqItems.forEach(faq => {
+            const alreadyOpen = item.classList.contains("active");
+
+            faqItems.forEach(function(faq){
 
                 faq.classList.remove("active");
 
                 const body = faq.querySelector(".faq-answer");
 
-                if (body) {
+                if(body){
 
                     body.style.maxHeight = null;
 
@@ -93,9 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             });
 
-            if (!isOpen) {
+            if(!alreadyOpen){
 
                 item.classList.add("active");
+
                 answer.style.maxHeight = answer.scrollHeight + "px";
 
             }
@@ -105,41 +134,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================================
-       ACTIVE NAV LINK
-    ========================================== */
-
-    const currentPage = window.location.pathname.split("/").pop();
-
-    document.querySelectorAll(".nav-menu a").forEach(link => {
-
-        const href = link.getAttribute("href");
-
-        if (href === currentPage || (currentPage === "" && href === "index.html")) {
-
-            link.classList.add("active");
-
-        }
-
-    });
-
-    /* ==========================================
        SMOOTH SCROLL
     ========================================== */
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
 
-        anchor.addEventListener("click", function (e) {
+        anchor.addEventListener("click", function(e){
 
-            const target = document.querySelector(this.getAttribute("href"));
+            const target = document.querySelector(
 
-            if (!target) return;
+                this.getAttribute("href")
+
+            );
+
+            if(!target) return;
 
             e.preventDefault();
 
             target.scrollIntoView({
 
-                behavior: "smooth",
-                block: "start"
+                behavior:"smooth",
+                block:"start"
 
             });
 
@@ -148,47 +163,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================================
-       CONTACT FORM
+       WEB3FORMS UX
+       (No preventDefault)
     ========================================== */
 
     const form = document.querySelector(".contact-form");
 
-    if (form) {
+    if(form){
 
-        form.addEventListener("submit", function (e) {
+        form.addEventListener("submit", function(){
 
-            e.preventDefault();
+            const button = form.querySelector("button[type='submit']");
 
-            const requiredFields = form.querySelectorAll("[required]");
+            if(button){
 
-            let valid = true;
+                button.disabled = true;
 
-            requiredFields.forEach(field => {
+                button.innerHTML = "Submitting...";
 
-                if (field.value.trim() === "") {
-
-                    valid = false;
-                    field.style.borderColor = "#ef4444";
-
-                } else {
-
-                    field.style.borderColor = "#e2e8f0";
-
-                }
-
-            });
-
-            if (!valid) {
-
-                alert("Please complete all required fields.");
-
-                return;
+                button.style.opacity = ".8";
 
             }
-
-            alert("Thank you! Your request has been received.");
-
-            form.reset();
 
         });
 
